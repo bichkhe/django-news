@@ -56,7 +56,7 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
     is_hidden =  models.BooleanField()
-    articles = models.ForeignKey(Article, null=True, related_name='comments')
+    article = models.ForeignKey(Article, null=True, related_name='comments')
 
 class SubComment(models.Model):
     is_subcomment = models.BooleanField()
@@ -66,7 +66,7 @@ class SubComment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
     is_hidden =  models.BooleanField()
-    subcomments = models.ForeignKey(Comment, null=True, related_name='subcomments')
+    comment = models.ForeignKey(Comment, null=True, related_name='subcomments')
     
 class Article(models.Model):
     title = models.CharField(max_length=255)
