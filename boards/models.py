@@ -32,7 +32,7 @@ class Post(models.Model):
     updated_by = models.ForeignKey(User, null=True, related_name='+')
 
     
- class Category(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
@@ -47,10 +47,31 @@ class SubCategory(models.Model):
     created_by = models.ForeignKey(User, related_name='subcategories')
     updated_by = models.ForeignKey(User, null=True, related_name='+')
     category = models.ForeignKey(Category, related_name='subcategories')
-    
+
+class Article(models.Model):
+    title = models.CharField(max_length=255)
+    abstract = models.CharField(max_length=500)
+    image = models.ImageField(upload_to = 'uploads/', default = '')
+    image_small = models.ImageField(upload_to = 'uploads/', default = '')
+    message = models.TextField(max_length=4000)
+    slug = models.SlugField(max_length=40)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(null=True)
+    created_by = models.ForeignKey(User, related_name='articles')
+    updated_by = models.ForeignKey(User, null=True, related_name='+')
+    category = models.ForeignKey(Category, related_name='articles')
+    is_hotnews= models.BooleanField()
+    is_topviewed = models.BooleanField()
+    iranks = models.IntegerField()
+    iviews = models.IntegerField()
+    ishared = models.IntegerField()
+
+    def __str__(self):
+        return self.slug
+
     
 class Comment(models.Model):
-    abstract = models.CharFiled(max_length=500)
+    abstract = models.CharField(max_length=500)
     message = models.TextField(max_length=4000)
     created_by = models.ForeignKey(User, related_name='comments')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -60,7 +81,7 @@ class Comment(models.Model):
 
 class SubComment(models.Model):
     is_subcomment = models.BooleanField()
-    abstract = models.CharFiled(max_length=500)
+    abstract = models.CharField(max_length=500)
     message = models.TextField(max_length=4000)
     created_by = models.ForeignKey(User, related_name='subcomments')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -68,23 +89,6 @@ class SubComment(models.Model):
     is_hidden =  models.BooleanField()
     comment = models.ForeignKey(Comment, null=True, related_name='subcomments')
     
-class Article(models.Model):
-    title = models.CharField(max_length=255)
-    abstract = models.CharFiled(max_length=500)
-    image = models.ImageField(upload_to = 'static/uploads/', default = '')
-    image_small = models.ImageField(upload_to = 'static/uploads/', default = '')
-    message = models.TextField(max_length=4000)
-    slug = models.SlugField(max_length=40)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(null=True)
-    created_by = models.ForeignKey(User, related_name='categories')
-    updated_by = models.ForeignKey(User, null=True, related_name='+')
-    category = models.ForeignKey(Category, related_name='subcategories')
-    is_hotnews= models.BooleanField()
-    is_topviewed = models.BooleanField()
-    iranks = models.IntegerField()
-    iviews = models.IntegerField()
-    ishared = models.IntegerField()
    
 
 

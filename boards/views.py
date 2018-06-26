@@ -2,14 +2,16 @@
 from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
-from boards.models import Board, Topic, Post
+from boards.models import Board, Topic, Post, Article, Category, Comment as JKComment
 from boards.forms import NewTopicForm
 
 # Create your views here.
 def index(request):
     boards = Board.objects.all()
+    hotnews = Article.objects.get(is_hotnews=True)
     ctx ={
-        'boards':boards
+        'boards':boards,
+        'hotnews':hotnews,
     }
     return render(request, 'technews/index.html', ctx)
 def board_topics(request, pk):
