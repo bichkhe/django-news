@@ -44,7 +44,7 @@ class SubCategory(models.Model):
     name = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
-    created_by = models.ForeignKey(User, related_name='categories')
+    created_by = models.ForeignKey(User, related_name='subcategories')
     updated_by = models.ForeignKey(User, null=True, related_name='+')
     category = models.ForeignKey(Category, related_name='subcategories')
     
@@ -52,7 +52,7 @@ class SubCategory(models.Model):
 class Comment(models.Model):
     abstract = models.CharFiled(max_length=500)
     message = models.TextField(max_length=4000)
-    created_by = models.ForeignKey(User, related_name='categories')
+    created_by = models.ForeignKey(User, related_name='comments')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
     is_hidden =  models.BooleanField()
@@ -62,7 +62,7 @@ class SubComment(models.Model):
     is_subcomment = models.BooleanField()
     abstract = models.CharFiled(max_length=500)
     message = models.TextField(max_length=4000)
-    created_by = models.ForeignKey(User, related_name='categories')
+    created_by = models.ForeignKey(User, related_name='subcomments')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
     is_hidden =  models.BooleanField()
