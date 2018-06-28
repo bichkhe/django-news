@@ -20,7 +20,7 @@ def index(request):
     return render(request, 'technews/index.html', ctx)
 
 
-def category(request, pk):
+def category(request, name):
     categories = Category.objects.all()
     boards = Board.objects.all()
     hotnews = Article.objects.filter(is_hotnews=True).latest('created_at')

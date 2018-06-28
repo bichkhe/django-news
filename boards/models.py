@@ -5,7 +5,7 @@ from django.db import models
 
 # Create your models here.
 from django.contrib.auth.models import User
-
+from django.core.urlresolvers import reverse
 
 class Board(models.Model):
     name = models.CharField(max_length=30, unique=True)
@@ -41,6 +41,8 @@ class Category(models.Model):
     is_priority = models.BooleanField()
     def __str__(self):
         return self.name
+    #def get_absolute_url(self):
+    #    return reverse("category", [self.name,])
 
 class SubCategory(models.Model):
     name = models.CharField(max_length=255)
@@ -71,6 +73,10 @@ class Article(models.Model):
     # class Meta:
     #     get_latest_by = "created_at"
 
+    
+    #@permalink
+  
+        
     def __str__(self):
         return self.slug
 

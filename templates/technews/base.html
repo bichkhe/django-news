@@ -144,7 +144,7 @@
                     <div class="collapse navbar-collapse" id="#navbar-collapse-1">
                         <ul class="nav navbar-nav main-nav">
 				{% for category in cateogries %}
-					 <li class="active"><a href="{% url 'category' 1 %}">{{category.name}}</a></li>
+					 <li class="active"><a href="{% url 'category' category.name %}">{{category.name}}</a></li>
 				{% endfor %}
                            
                            
