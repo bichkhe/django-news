@@ -1,6 +1,5 @@
 {% load static %}
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,12 +63,12 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="left_section">
-                                            <span class="date">
+                                           <!--- <span class="date">
                                                 Sunday .
                                             </span>
-                        <!-- Date -->
+                        <!-- Date --> 
                                             <span class="time">
-                                                09 August . 2016
+                                               {% now "jS F Y H:i" %}
                                             </span>
                         <!-- Time -->
                         <div class="social">
@@ -144,12 +143,11 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="#navbar-collapse-1">
                         <ul class="nav navbar-nav main-nav">
-                            <li class="active"><a href="index.html">News</a></li>
-                            <li><a href="category.html">Mobile</a></li>
-                            <li><a href="blog.html">Tablet</a></li>
-                            <li><a href="blog.html">Gadgets</a></li>
-                            <li><a href="blog.html">Camera</a></li>
-                            <li><a href="blog.html">Design</a></li>
+				{% for category in cateogries %}
+					 <li class="active"><a href="{% url 'category' 1 %}">{{category.name}}</a></li>
+				{% endfor %}
+                           
+                           
                         </ul>
                     </div>
                     <!-- .navbar-collapse -->

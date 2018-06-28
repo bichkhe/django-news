@@ -34,6 +34,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
     url(r'^signup/$', accounts_views.signup, name='signup'),
+    url(r'^category/(?P<pk>\d+)/$', views.category, name='category'),
    
 
 

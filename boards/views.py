@@ -7,13 +7,33 @@ from boards.forms import NewTopicForm
 
 # Create your views here.
 def index(request):
+    categories = Category.objects.all()
     boards = Board.objects.all()
-    hotnews = Article.objects.get(is_hotnews=True)
+    hotnews = Article.objects.filter(is_hotnews=True).latest('created_at')
+    topviewed = Article.objects.filter(is_topviewed=True).exclude(slug=hotnews.slug)[0:2]
     ctx ={
+        'cateogries': categories,
         'boards':boards,
         'hotnews':hotnews,
+        'topviewed' :topviewed,
     }
     return render(request, 'technews/index.html', ctx)
+
+
+def category(request, pk):
+    categories = Category.objects.all()
+    boards = Board.objects.all()
+    hotnews = Article.objects.filter(is_hotnews=True).latest('created_at')
+    topviewed = Article.objects.filter(is_topviewed=True).exclude(slug=hotnews.slug)[0:2]
+    ctx ={
+        'cateogries': categories,
+        'boards':boards,
+        'hotnews':hotnews,
+        'topviewed' :topviewed,
+    }
+    return render(request, 'technews/index.html', ctx)
+
+
 def board_topics(request, pk):
     board = Board.objects.get(pk=pk)
     return render(request, 'topics.html', {'board': board})

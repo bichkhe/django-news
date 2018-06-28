@@ -39,6 +39,8 @@ class Category(models.Model):
     created_by = models.ForeignKey(User, related_name='categories')
     updated_by = models.ForeignKey(User, null=True, related_name='+')
     is_priority = models.BooleanField()
+    def __str__(self):
+        return self.name
 
 class SubCategory(models.Model):
     name = models.CharField(max_length=255)
@@ -50,7 +52,7 @@ class SubCategory(models.Model):
 
 class Article(models.Model):
     title = models.CharField(max_length=255)
-    abstract = models.CharField(max_length=500)
+    abstract = models.CharField(max_length=150)
     image = models.ImageField(upload_to = 'uploads/', default = '')
     image_small = models.ImageField(upload_to = 'uploads/', default = '')
     message = models.TextField(max_length=4000)
@@ -66,12 +68,15 @@ class Article(models.Model):
     iviews = models.IntegerField()
     ishared = models.IntegerField()
 
+    # class Meta:
+    #     get_latest_by = "created_at"
+
     def __str__(self):
         return self.slug
 
     
 class Comment(models.Model):
-    abstract = models.CharField(max_length=500)
+    abstract = models.CharField(max_length=150)
     message = models.TextField(max_length=4000)
     created_by = models.ForeignKey(User, related_name='comments')
     created_at = models.DateTimeField(auto_now_add=True)
