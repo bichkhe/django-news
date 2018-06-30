@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load mainmenu %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,8 +53,10 @@
 <!-- preloader -->
 
 
-{% block body %}
 
+
+
+{% block nav %}
 <div class="uc-mobile-menu-pusher uc-offcanvas-pusher">
 <div class="content-wrapper uc-offcanvas-contents">
 <section id="header_section_wrapper" class="header_section_wrapper">
@@ -143,9 +145,15 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="#navbar-collapse-1">
                         <ul class="nav navbar-nav main-nav">
-				{% for category in cateogries %}
+				{% block nav_bar %}
+				<!---{% for category in cateogries %}
 					 <li class="active"><a href="{% url 'category' category.name %}">{{category.name}}</a></li>
-				{% endfor %}
+				{% endfor %}-->
+				{% for category in show_mainmenu %}
+					 <li class="active"><a href="{% url 'category' category.name %}">{{category.name}}</a></li>
+				{% endfor %}	
+
+				{% endblock %}
                            
                            
                         </ul>
@@ -162,11 +170,20 @@
 </section>
 <!-- header_section_wrapper -->
 {% endblock %} <!-- nav_bar -->
+{% block body %}
    
-
-
 {% block hotnews %}
+
 {% endblock %}
+
+{% endblock %}
+
+
+
+
+
+
+
 
 
 

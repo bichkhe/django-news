@@ -16,6 +16,7 @@ def signup(request):
     else:
         form = UserCreationForm()
     ctx = {
-        'form': form
+        'form': form,
+        'categories':
         }
     return render(request, 'technews/signup.html', ctx )
