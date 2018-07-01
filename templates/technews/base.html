@@ -53,9 +53,6 @@
 <!-- preloader -->
 
 
-
-
-
 {% block nav %}
 <div class="uc-mobile-menu-pusher uc-offcanvas-pusher">
 <div class="content-wrapper uc-offcanvas-contents">
@@ -94,9 +91,10 @@
                     </div>
                     <!-- Logo Section -->
                 </div>
+<!-----------------------------------------RIGHT SECTION ----------------------------------------->
                 <div class="col-md-4">
                     <div class="right_section">
-                        <ul class="nav navbar-nav">
+			<ul class="nav navbar-nav">
                             <li><a href="#">Login</a></li>
                             <li><a href="#">Register</a></li>
                             <li class="dropdown lang">
@@ -106,8 +104,8 @@
                                 </ul>
                             </li>
                         </ul>
+                          
                         <!-- Language Section -->
-
                         <ul class="nav-cta hidden-xs">
                             <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-search"></i></a>
                                 <ul class="dropdown-menu">
@@ -129,8 +127,10 @@
                         <!-- Search Section -->
                     </div>
                     <!-- Right Header Section -->
+
                 </div>
             </div>
+<!----------------------------------------------------- END RIGHT SECTION ------------------------------>
         </div>
         <!-- Header Section -->
 
@@ -149,7 +149,7 @@
 				<!---{% for category in cateogries %}
 					 <li class="active"><a href="{% url 'category' category.name %}">{{category.name}}</a></li>
 				{% endfor %}-->
-				{% for category in show_mainmenu %}
+				{% for category in mainmenu.show_mainmenu %}
 					 <li class="active"><a href="{% url 'category' category.name %}">{{category.name}}</a></li>
 				{% endfor %}	
 
@@ -170,6 +170,10 @@
 </section>
 <!-- header_section_wrapper -->
 {% endblock %} <!-- nav_bar -->
+
+
+
+
 {% block body %}
    
 {% block hotnews %}
@@ -177,15 +181,6 @@
 {% endblock %}
 
 {% endblock %}
-
-
-
-
-
-
-
-
-
 
 
 
@@ -427,8 +422,9 @@
 
 
 <!-- jquery Core-->
-<script src="{% static 'assets/js/jquery-2.1.4.min.js' %}"></script>
-
+<script src="{% static 'bootstrap/js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'bootstrap/js/popper.min.js' %}"></script>
+  
 <!-- Bootstrap -->
 <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
 

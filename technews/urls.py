@@ -20,6 +20,7 @@ from django.contrib import admin
 from boards import views
 from technews import settings
 from accounts  import views as accounts_views
+from django.contrib.auth import views as auth_views
 urlpatterns = [
 
     # TEST
@@ -36,6 +37,7 @@ urlpatterns = [
    
     url(r'^category/(?P<name>\w+)/$', views.category, name='category'),
     url(r'^signup/$', accounts_views.signup, name='signup'),
+    url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
    
 
 
